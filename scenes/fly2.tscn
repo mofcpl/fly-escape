@@ -1,0 +1,76 @@
+[gd_scene load_steps=16 format=3 uid="uid://bafo26qkxaecp"]
+
+[ext_resource type="Script" path="res://scenes/fly2.gd" id="1_5y0jn"]
+[ext_resource type="Texture2D" uid="uid://0qr6nhruiiry" path="res://assets/graphics/fly/fly0000.png" id="2_r3vqn"]
+[ext_resource type="Texture2D" uid="uid://bttank1d0nix" path="res://assets/graphics/fly/fly0001.png" id="3_xket4"]
+[ext_resource type="Texture2D" uid="uid://b5xfgf5jvpg81" path="res://assets/graphics/fly/fly0002.png" id="4_iac7f"]
+[ext_resource type="Texture2D" uid="uid://cc0u652typ1gb" path="res://assets/graphics/fly/fly0003.png" id="5_ltm60"]
+[ext_resource type="Texture2D" uid="uid://b6a4utu61wm2a" path="res://assets/graphics/fly/fly0004.png" id="6_fy4mp"]
+[ext_resource type="Texture2D" uid="uid://bpdkrcucw71qs" path="res://assets/graphics/fly/fly0005.png" id="7_v45wp"]
+[ext_resource type="Texture2D" uid="uid://cjgwshosrmdtw" path="res://assets/graphics/fly/fly0006.png" id="8_01rto"]
+[ext_resource type="Texture2D" uid="uid://dc34wkj4cnxar" path="res://assets/graphics/fly/fly0007.png" id="9_01j13"]
+[ext_resource type="Texture2D" uid="uid://3rblvfgf85xd" path="res://assets/graphics/fly/fly0008.png" id="10_etcxm"]
+[ext_resource type="Texture2D" uid="uid://bxvefdgx63oyf" path="res://assets/graphics/fly/fly0009.png" id="11_fucyy"]
+[ext_resource type="Texture2D" uid="uid://lcgrh6rouji4" path="res://assets/graphics/fly/fly0010.png" id="12_uvrqn"]
+[ext_resource type="AudioStream" uid="uid://bf710w1ixx3jx" path="res://assets/sounds/flies-buzzing-47157.mp3" id="13_1rlv6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8is2"]
+size = Vector2(26, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gp3p7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r3vqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xket4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_iac7f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ltm60")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fy4mp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_v45wp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_01rto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_01j13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_etcxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fucyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_uvrqn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 50.0
+}]
+
+[node name="Fly2" type="CharacterBody2D"]
+script = ExtResource("1_5y0jn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 1)
+shape = SubResource("RectangleShape2D_u8is2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -1)
+sprite_frames = SubResource("SpriteFrames_gp3p7")
+autoplay = "default"
+frame_progress = 0.334089
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_1rlv6")
+autoplay = true

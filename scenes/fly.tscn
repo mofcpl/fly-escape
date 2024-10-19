@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct84rqdx46gsr"]
+
+[sub_resource type="GDScript" id="GDScript_68xyy"]
+script/source = "class_name Fly
+
+extends RigidBody2D
+const MOVE_FORCE = 20.0  # Siła poruszania się w górę
+const ROTATION_TORQUE = 0.1  # Moment obrotowy
+
+var isStuck: bool = false
+
+func stuck():
+	isStuck = true
+
+func _physics_process(delta):
+	var actualMoveForce = -MOVE_FORCE / 4
+	var actualRotationTorque = ROTATION_TORQUE / 2
+	
+	if Input.is_action_pressed(\"fly\"):
+		var force_direction = Vector2(0, actualMoveForce).rotated(rotation)
+		apply_central_force(force_direction)
+	
+	if Input.is_action_pressed(\"roll_left\"):
+		apply_torque_impulse(-1 * actualRotationTorque)
+
+	if Input.is_action_pressed(\"roll_right\"):
+		apply_torque_impulse(actualRotationTorque)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tsuy"]
+size = Vector2(20.5, 7.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vkent"]
+
+[node name="Fly" type="RigidBody2D"]
+mass = 0.01
+can_sleep = false
+script = SubResource("GDScript_68xyy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 1)
+shape = SubResource("RectangleShape2D_4tsuy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vkent")

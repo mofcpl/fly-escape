@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqglu6u67y6qr"]
+
+[ext_resource type="Script" path="res://Spider2.gd" id="1_6ngqr"]
+[ext_resource type="Texture2D" uid="uid://dfa2bfa25n5cg" path="res://assets/graphics/spider/spider0000.png" id="2_ksbdf"]
+[ext_resource type="Texture2D" uid="uid://d1vrf45fm6xhc" path="res://assets/graphics/spider/spider0001.png" id="3_jfbip"]
+[ext_resource type="Texture2D" uid="uid://sksxk4n3yyjy" path="res://assets/graphics/spider/spider0002.png" id="4_3mdh8"]
+[ext_resource type="Texture2D" uid="uid://dvr04fv1g0e2i" path="res://assets/graphics/spider/spider0003.png" id="5_t2yyl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_01k5m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ksbdf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jfbip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3mdh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t2yyl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaawd"]
+size = Vector2(23.5625, 12.5)
+
+[node name="Spider2" type="Area2D"]
+script = ExtResource("1_6ngqr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
+position = Vector2(-2, 2)
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_01k5m")
+frame_progress = 0.559642
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 1)
+shape = SubResource("RectangleShape2D_oaawd")

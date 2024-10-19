@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5asbhtpykfbe"]
+
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_4iwm3"]
+[ext_resource type="PackedScene" uid="uid://bafo26qkxaecp" path="res://scenes/fly2.tscn" id="2_fxr40"]
+[ext_resource type="PackedScene" uid="uid://dearpgxtal7ks" path="res://scenes/hud.tscn" id="3_u3ah6"]
+[ext_resource type="Texture2D" uid="uid://pnp743tqvk47" path="res://assets/graphics/background.png" id="4_83lsj"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_s54qe"]
+distance = -1500.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mx4rl"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cvqn2"]
+normal = Vector2(-1, 0)
+distance = -3000.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tmcgy"]
+normal = Vector2(1, 0)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_4iwm3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_83lsj")
+centered = false
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Top" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Top"]
+shape = SubResource("WorldBoundaryShape2D_s54qe")
+
+[node name="Bottom" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Bottom"]
+shape = SubResource("WorldBoundaryShape2D_mx4rl")
+
+[node name="Left" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Left"]
+shape = SubResource("WorldBoundaryShape2D_cvqn2")
+
+[node name="Right" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Right"]
+shape = SubResource("WorldBoundaryShape2D_tmcgy")
+
+[node name="Fly2" parent="." instance=ExtResource("2_fxr40")]
+position = Vector2(1458, 770)
+
+[node name="Camera2D" type="Camera2D" parent="Fly2"]
+limit_left = -50
+limit_top = -50
+limit_right = 3050
+limit_bottom = 1550
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("3_u3ah6")]
+
+[connection signal="caught_in_net" from="Fly2" to="." method="_on_fly_2_caught_in_net"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpg5kc6db7gxr"]
+
+[ext_resource type="Script" path="res://ReferenceRect.gd" id="1_m63ve"]
+
+[node name="GameOver" type="ReferenceRect"]
+offset_right = 1200.0
+offset_bottom = 650.0
+script = ExtResource("1_m63ve")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -203.0
+offset_right = 261.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "Game Over"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.5
+offset_top = -35.0
+offset_right = 162.5
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 51
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -151.0
+offset_top = -197.0
+offset_right = 152.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 46
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

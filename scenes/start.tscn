@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://ec4u356yjnnv"]
+
+[ext_resource type="Script" path="res://scenes/start.gd" id="1_cthcn"]
+
+[node name="Start" type="ReferenceRect"]
+offset_right = 1200.0
+offset_bottom = 650.0
+script = ExtResource("1_cthcn")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -347.5
+offset_right = 347.5
+offset_bottom = 132.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 96
+text = "Fly does not sit"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -249.0
+offset_top = -119.0
+offset_right = 249.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 31
+text = "-survive as long as you can
+-avoid spiders web
+-if the spider touches you you die"
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -418.0
+offset_top = -199.0
+offset_right = 419.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 81
+text = "Press any key to start"
