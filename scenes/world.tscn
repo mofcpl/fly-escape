@@ -58,12 +58,8 @@ limit_bottom = 1550
 limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("3_u3ah6")]
 
 [connection signal="caught_in_net" from="Fly2" to="." method="_on_fly_2_caught_in_net"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

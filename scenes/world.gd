@@ -1,22 +1,33 @@
 extends Node2D
 
+@onready var fly_2 = $Fly2
+@onready var hud = $CanvasLayer/HUD
+
 const MAP_SIZE = Vector2(3000, 1500)
-const SPIDERS_NUMBER = 100
+const SPIDERS_NUMBER = 50
 
 var SpiderScene = preload("res://scenes/spider2.tscn")
 var NetScene = preload("res://scenes/net2.tscn")
-
-@onready var fly_2 = $Fly2
-@onready var hud = $CanvasLayer/HUD
+var Fruit = preload("res://scenes/fruit.tscn")
 
 func _ready():
 	Global.score = 0
 	fillWithSpiders()
+	var pos = randomPosition(MAP_SIZE.x,MAP_SIZE.y)
+	spawnFruit(pos)
 
 func fillWithSpiders():
 	for n in range(SPIDERS_NUMBER):
 		var pos = randomPosition(MAP_SIZE.x,MAP_SIZE.y)
 		spawnSpider(pos)
+
+func spawnFruit(pos: Vector2):
+	var fruit = Fruit.instantiate()
+	fruit.position = pos
+	add_child(fruit)
+	fruit.connect("harvested", fruitHarvested)
+	fly_2.fruitPosition = fruit.position
+	fly_2.enableArrow()
 
 func randomPosition(maxx, maxy) -> Vector2:
 	var random_position: Vector2
@@ -47,10 +58,13 @@ func updateNet(spiderFromSignal: Spider2):
 	var local_position = spiderFromSignal.currentNet.to_local(spiderFromSignal.position)
 	spiderFromSignal.currentNet.lengthenNet(local_position)
 
-func _on_timer_timeout():
+func fruitHarvested(fruit: Fruit):
+	fly_2.disableArrow()
 	Global.score += 1
 	hud.updateScore(Global.score)
-
+	fruit.queue_free()
+	var pos = randomPosition(MAP_SIZE.x,MAP_SIZE.y)
+	spawnFruit(pos)
 
 func _on_fly_2_caught_in_net():
 	var closestSpider = get_closest_spider()

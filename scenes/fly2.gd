@@ -4,24 +4,19 @@ extends CharacterBody2D
 
 signal caught_in_net
 
-# Stałe
-const SPEED = 500.0
-const ACCELERATION = 3000.0  # Wartość wygładzająca przyspieszanie
-const FRICTION = 1000.0       # Wartość wygładzająca zwalnianie
-const GRAVITY = 1000.0          # Siła grawitacji
-
+@onready var arrow: Node2D = $Arrow
 @onready var sprite_2d = $AnimatedSprite2D
 
-var isStuck: bool = false
+const SPEED = 500.0
+const ACCELERATION = 3000.0
+const FRICTION = 1000.0
+const GRAVITY = 1000.0
 
-func stuck(): 
-	isStuck = true
-	velocity = Vector2.ZERO  # Natychmiastowe zatrzymanie muchy
-	caught_in_net.emit()
-func notStuck(): 
-	isStuck = false
+var isStuck: bool = false
+var fruitPosition: Vector2
 
 func _physics_process(delta):
+	updateArrowDirection()
 	var flyMultiplier = 1
 	if (isStuck == true):
 		flyMultiplier = 0.005
@@ -50,3 +45,24 @@ func _physics_process(delta):
 
 	# Poruszanie muchą
 	move_and_slide()
+
+func updateArrowDirection():
+	arrow.rotation = (fruitPosition - position).normalized().angle()
+	if (position.distance_to(fruitPosition) < 200):
+		disableArrow()
+	else:
+		enableArrow()
+
+func enableArrow():
+	arrow.visible = true
+
+func disableArrow():
+	arrow.visible = false
+
+func stuck():
+	isStuck = true
+	velocity = Vector2.ZERO  # Natychmiastowe zatrzymanie muchy
+	caught_in_net.emit()
+
+func notStuck(): 
+	isStuck = false

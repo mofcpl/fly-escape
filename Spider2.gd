@@ -4,7 +4,6 @@ extends Area2D
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
-
 signal netStartSignal
 signal netUpdateSignal
 
@@ -12,7 +11,6 @@ const SPEED = 50.0
 const ROTATION_SPEED = PI / 5
 const MAX_DISTANCE = 500
 const MIN_DISTANCE = 100
-
 const WORLD_BOUNDRY = Vector2(3000,1500)
 
 enum Action {
@@ -42,13 +40,11 @@ var actionQueue = [
 	Action.START_MAKING_NET,
 	Action.MOVE_AND_CREATE_WEB,
 	]
-
 var followQueue = [
 	Action.CALCULATE_DIRECTION,
 	Action.TURN,
 	Action.MOVE
 ]
-
 var followMode = false
 var currentState := 0
 var targetPlace: Vector2

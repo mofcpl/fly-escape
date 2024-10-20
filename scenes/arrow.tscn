@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4sn8wf1atkjo"]
+
+[ext_resource type="Texture2D" uid="uid://d0wayly6ofwcf" path="res://assets/graphics/strzalka.png" id="1_1itia"]
+
+[node name="Arrow" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 100
+position = Vector2(179, 0)
+rotation = 1.5708
+texture = ExtResource("1_1itia")

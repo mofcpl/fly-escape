@@ -10,7 +10,7 @@ func _ready():
 	setScore(Global.score)
 
 func setScore(score: int):
-	label_2.text = "Your survived "+ str(score) + " seconds"
+	label_2.text = "You collected "+ str(score) + " points"
 
 
 func _on_timer_timeout():
