@@ -8,7 +8,7 @@ const SPIDERS_NUMBER = 50
 
 var SpiderScene = preload("res://scenes/spider2.tscn")
 var NetScene = preload("res://scenes/net2.tscn")
-var Fruit = preload("res://scenes/fruit.tscn")
+var FruitScene = preload("res://scenes/fruit.tscn")
 
 func _ready():
 	Global.score = 0
@@ -22,7 +22,7 @@ func fillWithSpiders():
 		spawnSpider(pos)
 
 func spawnFruit(pos: Vector2):
-	var fruit = Fruit.instantiate()
+	var fruit = FruitScene.instantiate()
 	fruit.position = pos
 	add_child(fruit)
 	fruit.connect("harvested", fruitHarvested)

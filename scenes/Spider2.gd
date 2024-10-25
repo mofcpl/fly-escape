@@ -57,7 +57,7 @@ func _ready():
 
 func _physics_process(delta):
 	var action: Action
-	if (followMode): 
+	if (followMode):
 		action = followQueue[currentState]
 	else: 
 		action = actionQueue[currentState]

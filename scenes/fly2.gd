@@ -15,36 +15,55 @@ const GRAVITY = 1000.0
 var isStuck: bool = false
 var fruitPosition: Vector2
 
-func _physics_process(delta):
-	updateArrowDirection()
-	var flyMultiplier = 1
-	if (isStuck == true):
-		flyMultiplier = 0.005
-	var input_vector = Vector2.ZERO
-	
-	if Input.is_action_pressed("fly_up"):
-		input_vector.y -= 1
-	if Input.is_action_pressed("fly_down"):
-		input_vector.y += 1
-	if Input.is_action_pressed("fly_left"):
-		input_vector.x -= 1
+var input_vector = Vector2.ZERO
+var move_up = false
+var move_down = false
+var move_left = false
+var move_right = false
+
+func _input(event):
+	if event.is_action_pressed("fly_up"):
+		move_up = true
+	elif event.is_action_released("fly_up"):
+		move_up = false
+	if event.is_action_pressed("fly_down"):
+		move_down = true
+	elif event.is_action_released("fly_down"):
+		move_down = false
+	if event.is_action_pressed("fly_left"):
+		move_left = true
 		sprite_2d.scale.x = -1
-	if Input.is_action_pressed("fly_right"):
-		input_vector.x += 1
+	elif event.is_action_released("fly_left"):
+		move_left = false
+	if event.is_action_pressed("fly_right"):
+		move_right = true
 		sprite_2d.scale.x = 1
+	elif event.is_action_released("fly_right"):
+		move_right = false
 
-	if input_vector.length() > 0:
+func _physics_process(delta):
+	input_vector = Vector2.ZERO
+	if move_up:
+		input_vector.y = -1
+	elif move_down:
+		input_vector.y = 1
+	if move_left:
+		input_vector.x = -1
+	elif move_right:
+		input_vector.x = 1
+	var flyMultiplier = 1
+	if (isStuck == true): 
+		flyMultiplier = 0.005
+	if input_vector.length() > 0: 
 		input_vector = input_vector.normalized()
-
 	velocity = velocity.move_toward(input_vector * SPEED * flyMultiplier, ACCELERATION * delta * flyMultiplier)
-	
-	# Spowalnianie, jeśli nie ma żadnego wejścia (friction)
 	if input_vector == Vector2.ZERO:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-		velocity.y += GRAVITY * delta * flyMultiplier  # Dodaj grawitację
-
-	# Poruszanie muchą
+		velocity.y += GRAVITY * delta * flyMultiplier
 	move_and_slide()
+
+func _process(_delta):
+	updateArrowDirection()
 
 func updateArrowDirection():
 	arrow.rotation = (fruitPosition - position).normalized().angle()
@@ -61,7 +80,7 @@ func disableArrow():
 
 func stuck():
 	isStuck = true
-	velocity = Vector2.ZERO  # Natychmiastowe zatrzymanie muchy
+	velocity = Vector2.ZERO
 	caught_in_net.emit()
 
 func notStuck(): 

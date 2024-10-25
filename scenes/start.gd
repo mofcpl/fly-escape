@@ -1,11 +1,10 @@
 extends ReferenceRect
 
-signal anyKeyPressed
 signal readyScene
 
-func _ready():
+func _ready() -> void:
 	readyScene.emit()
 
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		get_tree().change_scene_to_file("res://scenes/world.tscn")

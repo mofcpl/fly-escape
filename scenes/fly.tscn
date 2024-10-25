@@ -12,7 +12,7 @@ var isStuck: bool = false
 func stuck():
 	isStuck = true
 
-func _physics_process(delta):
+func _physics_process(dfelta):
 	var actualMoveForce = -MOVE_FORCE / 4
 	var actualRotationTorque = ROTATION_TORQUE / 2
 	
