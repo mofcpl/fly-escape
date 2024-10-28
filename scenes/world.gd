@@ -2,6 +2,9 @@ extends Node2D
 
 @onready var fly_2 = $Fly2
 @onready var hud = $CanvasLayer/HUD
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
+
 
 const MAP_SIZE = Vector2(3000, 1500)
 const SPIDERS_NUMBER = 50
@@ -59,6 +62,7 @@ func updateNet(spiderFromSignal: Spider2):
 	spiderFromSignal.currentNet.lengthenNet(local_position)
 
 func fruitHarvested(fruit: Fruit):
+	audio_stream_player.play()
 	fly_2.disableArrow()
 	Global.score += 1
 	hud.updateScore(Global.score)

@@ -6,6 +6,10 @@ signal caught_in_net
 
 @onready var arrow: Node2D = $Arrow
 @onready var sprite_2d = $AnimatedSprite2D
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
+@onready var audio_stream_player_2: AudioStreamPlayer = $AudioStreamPlayer2
+
 
 const SPEED = 500.0
 const ACCELERATION = 3000.0
@@ -14,6 +18,7 @@ const GRAVITY = 1000.0
 
 var isStuck: bool = false
 var fruitPosition: Vector2
+var flying:= false
 
 var input_vector = Vector2.ZERO
 var move_up = false
@@ -54,8 +59,11 @@ func _physics_process(delta):
 	var flyMultiplier = 1
 	if (isStuck == true): 
 		flyMultiplier = 0.005
-	if input_vector.length() > 0: 
+	if input_vector.length() > 0:
 		input_vector = input_vector.normalized()
+		flying = true
+	else:
+		flying = false
 	velocity = velocity.move_toward(input_vector * SPEED * flyMultiplier, ACCELERATION * delta * flyMultiplier)
 	if input_vector == Vector2.ZERO:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -64,6 +72,10 @@ func _physics_process(delta):
 
 func _process(_delta):
 	updateArrowDirection()
+	if flying:
+		audio_stream_player.volume_db = -5
+	else:
+		audio_stream_player.volume_db = -15
 
 func updateArrowDirection():
 	arrow.rotation = (fruitPosition - position).normalized().angle()
@@ -79,6 +91,7 @@ func disableArrow():
 	arrow.visible = false
 
 func stuck():
+	audio_stream_player_2.play()
 	isStuck = true
 	velocity = Vector2.ZERO
 	caught_in_net.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bafo26qkxaecp"]
+[gd_scene load_steps=18 format=3 uid="uid://bafo26qkxaecp"]
 
 [ext_resource type="Script" path="res://scenes/fly2.gd" id="1_5y0jn"]
 [ext_resource type="Texture2D" uid="uid://0qr6nhruiiry" path="res://assets/graphics/fly/fly0000.png" id="2_r3vqn"]
@@ -12,8 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://3rblvfgf85xd" path="res://assets/graphics/fly/fly0008.png" id="10_etcxm"]
 [ext_resource type="Texture2D" uid="uid://bxvefdgx63oyf" path="res://assets/graphics/fly/fly0009.png" id="11_fucyy"]
 [ext_resource type="Texture2D" uid="uid://lcgrh6rouji4" path="res://assets/graphics/fly/fly0010.png" id="12_uvrqn"]
-[ext_resource type="AudioStream" uid="uid://bf710w1ixx3jx" path="res://assets/sounds/flies-buzzing-47157.mp3" id="13_1rlv6"]
+[ext_resource type="AudioStream" uid="uid://derogsjdj1a23" path="res://assets/sounds/fly.wav" id="13_nebl6"]
 [ext_resource type="PackedScene" uid="uid://c4sn8wf1atkjo" path="res://scenes/arrow.tscn" id="14_as5gs"]
+[ext_resource type="AudioStream" uid="uid://bqpgdai60pobv" path="res://assets/sounds/stick.wav" id="15_li71d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u8is2"]
 size = Vector2(26, 10)
@@ -73,7 +74,12 @@ autoplay = "default"
 frame_progress = 0.334089
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_1rlv6")
+stream = ExtResource("13_nebl6")
+volume_db = -20.0
 autoplay = true
 
 [node name="Arrow" parent="." instance=ExtResource("14_as5gs")]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_li71d")
+volume_db = 10.0

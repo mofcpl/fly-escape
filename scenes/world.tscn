@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5asbhtpykfbe"]
+[gd_scene load_steps=10 format=3 uid="uid://b5asbhtpykfbe"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_4iwm3"]
 [ext_resource type="PackedScene" uid="uid://bafo26qkxaecp" path="res://scenes/fly2.tscn" id="2_fxr40"]
 [ext_resource type="PackedScene" uid="uid://dearpgxtal7ks" path="res://scenes/hud.tscn" id="3_u3ah6"]
 [ext_resource type="Texture2D" uid="uid://pnp743tqvk47" path="res://assets/graphics/background.png" id="4_83lsj"]
+[ext_resource type="AudioStream" uid="uid://b13e67svrxioj" path="res://assets/sounds/pickup.wav" id="5_7vgcn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_s54qe"]
 distance = -1500.0
@@ -62,4 +63,6 @@ position_smoothing_enabled = true
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("3_u3ah6")]
 
-[connection signal="caught_in_net" from="Fly2" to="." method="_on_fly_2_caught_in_net"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7vgcn")
+volume_db = 5.0
