@@ -66,3 +66,5 @@ position_smoothing_enabled = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_7vgcn")
 volume_db = 5.0
+
+[connection signal="caught_in_net" from="Fly2" to="." method="_on_fly_2_caught_in_net"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sksxk4n3yyjy"
-path="res://.godot/imported/spider0002.png-a071db398364db8010759b03f1519d62.ctex"
+uid="uid://dk4yddeun4vye"
+path="res://.godot/imported/pomarancza.png-017a528113551b2c2e6442f1761c8d9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/spider/spider0002.png"
-dest_files=["res://.godot/imported/spider0002.png-a071db398364db8010759b03f1519d62.ctex"]
+source_file="res://assets/graphics/pomarancza.png"
+dest_files=["res://.godot/imported/pomarancza.png-017a528113551b2c2e6442f1761c8d9f.ctex"]
 
 [params]
 

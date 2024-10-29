@@ -73,9 +73,9 @@ func _physics_process(delta):
 func _process(_delta):
 	updateArrowDirection()
 	if flying:
-		audio_stream_player.volume_db = -5
+		audio_stream_player.volume_db = -10
 	else:
-		audio_stream_player.volume_db = -15
+		audio_stream_player.volume_db = -20
 
 func updateArrowDirection():
 	arrow.rotation = (fruitPosition - position).normalized().angle()

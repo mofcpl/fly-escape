@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfa2bfa25n5cg"
-path="res://.godot/imported/spider0000.png-f3f4be50267ef80eca5e8fa9fac6d898.ctex"
+uid="uid://djcvpyi1n1fv0"
+path="res://.godot/imported/malina.png-3eb3514203eb7b5f6500e8362b70f2dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/spider/spider0000.png"
-dest_files=["res://.godot/imported/spider0000.png-f3f4be50267ef80eca5e8fa9fac6d898.ctex"]
+source_file="res://assets/graphics/malina.png"
+dest_files=["res://.godot/imported/malina.png-3eb3514203eb7b5f6500e8362b70f2dc.ctex"]
 
 [params]
 
